@@ -1,0 +1,23 @@
+//This simple game tells the user what their weight would //be on the moon! Assuming they want to, of course.
+<script type="text/javascript">
+
+var earthWeight, moonWeight, init, message;
+
+//prompt user
+init = prompt("Would you like to know how much you would weight on the moon?");
+
+if(init == "yes") {
+//get their weight in earth-pounds
+earthWeight = prompt("How much do you weight? (in pounds)");
+//Convert to moon-pounds
+moonWeight = Math.floor(earthWeight * (1/6));
+message = "You would weight " + moonWeight + " pounds on the moon!";
+} else {
+message = "Thats fine!";
+//It's not
+}
+//print out the conversion
+alert(message);
+
+
+</script>
