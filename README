@@ -1,0 +1,7 @@
+This game takes the users weight to calculate what they would weigh if they were on the moon.
+
+Alex's notes:
+
+We changed the formatting a little bit and then we decided to added the options to see how much the user weighs
+on Mercury, Mars, Venus, Jupiter or the Moon. Then we created a switch statement instead of multiple if/else
+statements. 

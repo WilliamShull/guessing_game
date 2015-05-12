@@ -1,23 +1,40 @@
-//This simple game tells the user what their weight would //be on the moon! Assuming they want to, of course.
 <script type="text/javascript">
 
-var earthWeight, moonWeight, init, message;
+var start, planetChoice, earthWeight, message, planetWeight;
 
 //prompt user
-init = prompt("Would you like to know how much you would weight on the moon?");
+start = prompt("Would you like to know how much you would weight on a different celestial body?");
+if (start == 'yes') {
+  planetChoice = prompt("Which celestial body: Mercury, Venus, the Moon, or Mars");
+  earthWeight = prompt("How much do you weight? (in pounds)");
+  console.log(earthWeight);
+    switch (planetChoice.toLowerCase()) {
+      case 'the moon':
+        planetWeight = Math.floor(earthWeight * (1/6));
+        break;
 
-if(init == "yes") {
-//get their weight in earth-pounds
-earthWeight = prompt("How much do you weight? (in pounds)");
-//Convert to moon-pounds
-moonWeight = Math.floor(earthWeight * (1/6));
-message = "You would weight " + moonWeight + " pounds on the moon!";
-} else {
-message = "Thats fine!";
-//It's not
-}
+      case 'mercury':
+        planetWeight = Math.floor(earthWeight * 0.38);
+        break;
+
+      case 'venus':
+        planetWeight = Math.floor(earthWeight * 0.91);
+        break;
+
+      case 'mars':
+        planetWeight = Math.floor(earthWeight * 0.38);
+        break;
+  }
+  console.log(planetWeight);
+
+  message = "You would weigh " + planetWeight + " pounds on " + planetChoice + "!";
+
+
+  } else {
+  message = "Thats fine!";
+  //It's not
+  }
 //print out the conversion
 alert(message);
-
 
 </script>
