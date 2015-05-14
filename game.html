@@ -6,35 +6,27 @@ var start, planetChoice, earthWeight, message, planetWeight;
 start = prompt("Would you like to know how much you would weight on a different celestial body?");
 if (start == 'yes') {
   planetChoice = prompt("Which celestial body: Mercury, Venus, the Moon, or Mars");
-  earthWeight = prompt("How much do you weight? (in pounds)");
-  console.log(earthWeight);
-    switch (planetChoice.toLowerCase()) {
-      case 'the moon':
-        planetWeight = Math.floor(earthWeight * (1/6));
-        break;
+  userWeight = prompt("How much do you weight? (in pounds)");
 
-      case 'mercury':
-        planetWeight = Math.floor(earthWeight * 0.38);
-        break;
+  function planetInfo(planetChoice,planetGravity){
+  this.planetChoice = planetChoice
+  this.planetGravity = planetGravity
+  this.calculateWeight = function()
+  {return Math.floor(userWeight * planetGravity)}
 
-      case 'venus':
-        planetWeight = Math.floor(earthWeight * 0.91);
-        break;
-
-      case 'mars':
-        planetWeight = Math.floor(earthWeight * 0.38);
-        break;
-  }
-  console.log(planetWeight);
+  var moon = new planetInfo(moon, 0.6);
+  var mercury = new planetInfo(mercury, 0.38);
+  var venus = new planetInfo(venus, 0.91);
+  var mars = new planetInfo(mars, 0.38);
 
   message = "You would weigh " + planetWeight + " pounds on " + planetChoice + "!";
+  alert(message)
 
 
-  } else {
+} else {
   message = "Thats fine!";
   //It's not
-  }
+}
 //print out the conversion
 alert(message);
-
 </script>
