@@ -1,32 +1,175 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weight calculator</title>
+  </head>
+  <body>
+    <header align="center">
+      <h2>Other-worldly weight calculator!</h2>
+    </header>
+      <article>
+        <header align="center">
+          <p>Insert your weight below, then click on a world to calculate how much you would weigh on it.</p>
+            <input id="inputUserWeight" type="number" name="userweight" value="" />
+        </header>
+        <section>
+          <table id="planetTable" align="center">
+            <tr>
+              <td class="planetButton" id="mercury">
+                  <button><img src="images/mercury.jpg" alt="Mercury" width="100" height="100" /><br>Mercury</button>
+              </td>
+              <td class="planetButton" id="venus">
+                  <button><img src="images/venus.jpg" alt="Venus" width="100" height="100" /><br>Venus</button>
+              </td>
+              <td class="planetButton" id="earth">
+                  <button><img src="images/bluemarblewest.jpg" alt="Earch" width="100" height="100" /><br>Earth</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="planetButton" id="mars">
+                  <button><img src="images/mars.jpg" alt="" width="100" height="100" /><br>Mars</button>
+              </td>
+
+              <td class="planetButton" id="jupiter">
+                  <button><img src="images/jupiter.png" alt="" width="100" height="100" /><br>Jupiter</button>
+              </td>
+
+              <td class="planetButton" id="saturn">
+                  <button><img src="images/saturn.jpg" alt="" width="100" height="100" /><br>Saturn</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="planetButton" id="uranus">
+                  <button><img src="images/uranus.jpg" alt="" width="100" height="100" /><br>Uranus</button>
+              </td>
+              <td class="planetButton" id="neptune">
+                  <button><img src="images/neptune.jpg" alt="" width="100" height="100" /><br>Neptune</button>
+              </td>
+              <td class="planetButton" id="pluto">
+                  <button><img src="images/pluto.jpg" alt="" width="100" height="100" /><br>Pluto</button>
+              </td>
+            </tr>
+          </table>
+        </section>
+        <footer align="center">
+          <section>
+            <p>You would weigh: </p>
+            <input id="weightOutput" type="number" name="output" value="calculated Weight" />
+          </section>
+        </footer>
+      </article>
+    <footer align="center">
+      <p>Made by William Shull</p>
+    </footer>
+
+
+
+
+
+
 <script type="text/javascript">
 
-var start, planetChoice, earthWeight, message, planetWeight;
+  var start, planetChoice, earthWeight, planetWeight;
 
-//prompt user
-start = prompt("Would you like to know how much you would weight on a different celestial body?");
-if (start == 'yes') {
-  planetChoice = prompt("Which celestial body: Mercury, Venus, the Moon, or Mars");
-  userWeight = prompt("How much do you weight? (in pounds)");
+  function PlanetInfo(planetChoice, planetGravity) {
+  this.planetChoice = planetChoice;
+  this.planetGravity = planetGravity;
+  this.calculateWeight = function(weightValue) {
+    return Math.floor(weightValue * planetGravity);
+    }
+  }
 
-  function planetInfo(planetChoice,planetGravity){
-  this.planetChoice = planetChoice
-  this.planetGravity = planetGravity
-  this.calculateWeight = function()
-  {return Math.floor(userWeight * planetGravity)}
+  var mercury = new PlanetInfo("mercury", 0.38);
+  var venus = new PlanetInfo("venus", 0.91);
+  var earth = new PlanetInfo("earth", 1);
+  var mars = new PlanetInfo("mars", 0.38);
+  var jupiter = new PlanetInfo("jupiter", 2.54);
+  var saturn = new PlanetInfo("saturn", 1.08);
+  var uranus = new PlanetInfo("uranus", 0.91);
+  var neptune = new PlanetInfo("neptune", 1.19);
+  var pluto = new PlanetInfo("pluto",0.06);
 
-  var moon = new planetInfo(moon, 0.6);
-  var mercury = new planetInfo(mercury, 0.38);
-  var venus = new planetInfo(venus, 0.91);
-  var mars = new planetInfo(mars, 0.38);
+  function calculate(gravity, planet) {
+    var weight = document.getElementById('inputUserWeight').value;
+    var calWeight = Math.floor(weight * gravity);
+    console.log(calWeight);
+    console.log(weight);
+    document.getElementById('weightOutput').value = calWeight;
+  }
 
-  message = "You would weigh " + planetWeight + " pounds on " + planetChoice + "!";
-  alert(message)
+  var mercuryListener = document.getElementById('mercury');
+  var venusListener = document.getElementById('venus');
+  var earthListener = document.getElementById('earth');
+  var marsListener = document.getElementById('mars');
+  var jupiterListener = document.getElementById('jupiter');
+  var saturnListener = document.getElementById('saturn');
+  var uranusListener = document.getElementById('uranus');
+  var neptuneListener = document.getElementById('neptune');
+  var plutoListener = document.getElementById('pluto');
 
+  mercuryListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var planet = mercury.planetChoice;
+    var gravity = mercury.planetGravity;
+    calculate(gravity, planet);
+  });
 
-} else {
-  message = "Thats fine!";
-  //It's not
-}
-//print out the conversion
-alert(message);
+  venusListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = venus.planetGravity;
+    calculate(gravity);
+  });
+
+  earthListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = earth.planetGravity;
+    calculate(gravity);
+  });
+
+  marsListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = mars.planetGravity;
+    calculate(gravity);
+  })
+
+  jupiterListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = jupiter.planetGravity;
+    calculate(gravity);
+  });
+
+  saturnListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = saturn.planetGravity;
+    calculate(gravity);
+  });
+
+  uranusListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = uranus.planetGravity;
+    calculate(gravity);
+  });
+
+  neptuneListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = neptune.planetGravity;
+    calculate(gravity);
+  });
+
+  plutoListener.addEventListener('click', function(e) {
+    e.preventDefault();
+    var gravity = pluto.planetGravity;
+    calculate(gravity);
+  });
 </script>
+
+
+
+  </body>
+</html>
