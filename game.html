@@ -95,7 +95,7 @@
   var neptune = new PlanetInfo("neptune", 1.19);
   var pluto = new PlanetInfo("pluto",0.06);
 
-  function calculate(gravity, planet) {
+  function calculate(gravity) {
     var weight = document.getElementById('inputUserWeight').value;
     var calWeight = Math.floor(weight * gravity);
     console.log(calWeight);
@@ -114,10 +114,10 @@
   var plutoListener = document.getElementById('pluto');
 
   mercuryListener.addEventListener('click', function(e) {
-    e.preventDefault();
-    var planet = mercury.planetChoice;
+    console.dir(e);
+    console.log(e.target);
     var gravity = mercury.planetGravity;
-    calculate(gravity, planet);
+    calculate(gravity);
   });
 
   venusListener.addEventListener('click', function(e) {
@@ -167,6 +167,8 @@
     var gravity = pluto.planetGravity;
     calculate(gravity);
   });
+
+
 </script>
 
 
